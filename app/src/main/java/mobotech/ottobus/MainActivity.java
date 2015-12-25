@@ -22,6 +22,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         GetJsonData.simpleVolleyRequest(this , url);
 
+        // Otto EventBus
+
+        // Make Bust Class which return instance of Bus
+        // initialize ResultEvent Interface
+        // Post to Bus After getting Json Response in GetJsonData class
+        // 
+
     }
 
 

@@ -13,6 +13,9 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import mobotech.ottobus.bus.JsonObjectResultEvent;
+import mobotech.ottobus.utils.MyBus;
+
 /**
  * Created by Dell on 12/25/2015.
  */
@@ -26,7 +29,7 @@ public class GetJsonData {
             public void onResponse(JSONObject response) {
                 Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show();
                 Log.i("MY_TAG", "Response: " + response.toString());
-
+                MyBus.getInstance().post(new JsonObjectResultEvent(response));
             }
         }, new Response.ErrorListener() {
             @Override
