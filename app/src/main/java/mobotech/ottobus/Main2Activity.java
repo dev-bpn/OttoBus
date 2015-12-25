@@ -2,8 +2,16 @@ package mobotech.ottobus;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.squareup.otto.Subscribe;
+
+import org.json.JSONObject;
+
+import mobotech.ottobus.bus.JsonObjectResultEvent;
+import mobotech.ottobus.utils.MyBus;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -11,6 +19,20 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        MyBus.getInstance().register(this);
+
+    }
+
+    @Subscribe
+    public void getJsonObject(JsonObjectResultEvent event){
+        JSONObject jsonObject = event.getJsonObject();
+        Log.i("MY_TAG" , "Event Bus OBJECT: "+jsonObject.toString());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MyBus.getInstance().unregister(this);
     }
 
     @Override
