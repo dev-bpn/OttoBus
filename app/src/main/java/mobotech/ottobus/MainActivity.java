@@ -1,5 +1,6 @@
 package mobotech.ottobus;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -27,11 +28,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Make Bust Class which return instance of Bus
         // initialize ResultEvent Interface
         // Post to Bus After getting Json Response in GetJsonData class
-        // 
+        //
 
     }
 
 
+    public void showNewActivity(View view){
+
+        Intent intent = new Intent(this , Main2Activity.class);
+        startActivity(intent);
+
+
+    }
 
 
     @Override

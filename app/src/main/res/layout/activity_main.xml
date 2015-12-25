@@ -9,10 +9,11 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:onClick="showNewActivity"
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:text="showNewActivity" />
 
     <ListView
         android:layout_width="wrap_content"
