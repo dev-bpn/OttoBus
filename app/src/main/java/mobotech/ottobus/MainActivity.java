@@ -3,13 +3,20 @@ package mobotech.ottobus;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.otto.Subscribe;
+
+import org.json.JSONObject;
+
+import mobotech.ottobus.bus.JsonObjectResultEvent;
 import mobotech.ottobus.contoller.GetJsonData;
+import mobotech.ottobus.utils.MyBus;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MyBus.getInstance().register(this);
 
         GetJsonData.simpleVolleyRequest(this , url);
 
@@ -32,6 +41,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    @Subscribe
+    public void getJsonObject(JsonObjectResultEvent event){
+        JSONObject jsonObject = event.getJsonObject();
+        Log.i("MY_TAG", "Event Bus OBJECT: " + jsonObject.toString());
+    }
 
     public void showNewActivity(View view){
 
